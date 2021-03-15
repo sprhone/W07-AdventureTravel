@@ -2,14 +2,13 @@ package controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
  * Sterling Rhone - sprhone
  * 202102 CIS175 26740
- * Mar 3, 2021
+ * Mar 11, 2021
  */
 
 @Converter(autoApply = true)
