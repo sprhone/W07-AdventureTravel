@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table (name="gear")
+@Table(name="gear")
 public class Gear {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
