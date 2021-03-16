@@ -14,7 +14,7 @@ import model.Explorers;
  * Mar 15, 2021
  */
 public class ExplorerHelper {
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("adventuretravel");
 	
 	public void insertExplorers(Explorers exp) {
 		EntityManager em = emfactory.createEntityManager();

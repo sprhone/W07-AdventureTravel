@@ -14,7 +14,7 @@ import model.Destinations;
  * Mar 15, 2021
  */
 public class DestinationsHelper {
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("adventuretravel");
 	
 	public void insertNewDestinations(Destinations des) {
 		EntityManager em = emfactory.createEntityManager();

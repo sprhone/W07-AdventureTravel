@@ -4,9 +4,15 @@
 	<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Index placeholder page</title>
+		<title>Adventure Travel</title>
 	</head>
 	<body>
-		<h1>I'm just a temporary placeholder!</h1>
+		<form action = "addGearServlet" method="post">
+			Gear: <input type ="text" name = "gear">
+			<input type = "submit" value="Add Gear">
+		</form> <br />
+		<a href = "viewAllGearServlet">View the complete gear list</a> <br/>
+		<a href = "viewAllDestinationsServlet">View all Destinations lists</a> <br/>
+		<a href = "addItemsForListServlet">Create a new list</a>
 	</body>
 </html>

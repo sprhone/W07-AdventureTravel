@@ -34,6 +34,11 @@ public class Gear {
 		this.gearName = gearName;
 	}
 
+	public Gear(String gearName) {
+		super();
+		this.gearName = gearName;
+	}
+
 	public int getGearId() {
 		return gearId;
 	}
