@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Explorers;
-import model.Gear;
 
 /**
  * Servlet implementation class addExplorerServlet
@@ -41,8 +40,6 @@ public class addExplorerServlet extends HttpServlet {
 		doGet(request, response);
 		
 		String explorer = request.getParameter("explorer");
-		//String gear = "";
-		//Gear add = new Gear(gear);
 		
 		Explorers exp = new Explorers(explorer);
 		ExplorerHelper eh = new ExplorerHelper();

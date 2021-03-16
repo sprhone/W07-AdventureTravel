@@ -14,7 +14,12 @@
 					<tr>
 						<td><input type="radio" name="explorerId" value="${currentitem.explorerId}"></td>
 						<td>${currentitem.explorerName}</td>
+					<tr>
+						<td></td><td colspan="3">Gear List:</td>
 					</tr>
+				<c:forEach var = "listVal" items = "${currentitem.listOfGear}">
+					<tr><td></td><td colspan="3"> ${listVal.gearName}</td></tr>
+				</c:forEach>
 				</c:forEach>
 			</table>
 		<input type = "submit" value = "edit" name="doThisToItem">

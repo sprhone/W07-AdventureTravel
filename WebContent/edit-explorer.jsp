@@ -11,8 +11,15 @@
 		<form action = "editExplorerServlet" method="post">
 		Explorer to edit: <input type ="text" name = "explorerName" value=
 		"${explorerToEdit.explorerName}">
-		<input type = "hidden" name = "explorerId" value="${explorerToEdit.explorerId}">
-		<input type = "submit" value="Save Edited Explorer">
+		<input type = "hidden" name = "explorerId" value="${explorerToEdit.explorerId}"><br/>
+			Available Gear:<br />
+			<select name="allGearToAdd" multiple size="6">
+			<c:forEach items="${requestScope.allGear}" var="currentitem">
+			<option value = "${currentitem.gearId}">${currentitem.gearName}</option>
+			</c:forEach>
+			</select>
+			<br />
+			<input type = "submit" value="Save Edited Explorer">
 		</form>
 	</body>
 </html>

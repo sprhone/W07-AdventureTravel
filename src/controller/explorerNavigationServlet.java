@@ -59,6 +59,10 @@ public class explorerNavigationServlet extends HttpServlet {
 				Integer tempId = Integer.parseInt(request.getParameter("explorerId"));
 				Explorers explorerToEdit = eh.searchForExplorerById(tempId);
 				request.setAttribute("explorerToEdit", explorerToEdit);
+				
+				GearHelper listOfGear = new GearHelper();
+				request.setAttribute("allGear", listOfGear.showAllGear());
+				
 				path = "/edit-explorer.jsp";
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to select an item");

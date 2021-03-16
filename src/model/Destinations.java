@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -32,11 +33,14 @@ public class Destinations {
 	private String destinationName;
 	@Column(name="TRIP_DATE")
 	private LocalDate tripDate;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade= {CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name="EXPLORER_ID")
 	private Explorers explorers;
-	@OneToMany(
-			cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true
+	@OneToMany(cascade= {CascadeType.MERGE, CascadeType.REFRESH}, fetch=FetchType.EAGER)
+	@JoinTable(
+			name="destinations_explorers",
+			joinColumns = {@JoinColumn(name="DESTINATION_ID", referencedColumnName = "DESTINATION_ID")},
+			inverseJoinColumns = {@JoinColumn(name="EXPLORER_ID", referencedColumnName = "EXPLORER_ID", unique = true)}
 			)	
 	private List<Explorers> listOfExplorers;
 	
@@ -69,6 +73,11 @@ public class Destinations {
 		this.destinationName = destinationName;
 		this.tripDate = tripDate;
 		this.explorers = explorers;
+	}
+
+	public Destinations(String destinationName) {
+		super();
+		this.destinationName = destinationName;
 	}
 
 	public int getTripId() {
