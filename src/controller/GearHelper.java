@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import model.Gear;
 
@@ -29,5 +30,59 @@ public class GearHelper {
 		EntityManager em = emfactory.createEntityManager();
 		List<Gear> allGear = em.createQuery("SELECT g FROM Gear g").getResultList();
 		return allGear;
+	}
+
+	public Gear searchForGearById(Integer idToEdit) {
+		// TODO Auto-generated method stub
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		Gear found = em.find(Gear.class, idToEdit);
+		em.close();
+		return found;
+	}
+	
+	public List<Gear> searchForGearByName(String gearName) {
+		// TODO Auto-generated method stub
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<Gear> typedQuery = em.createQuery("SELECT g FROM Gear g WHERE g.gearName = :selectedgearName", Gear.class);
+		typedQuery.setParameter("selectedGear", gearName);
+		
+		List<Gear> foundItems = typedQuery.getResultList();
+		em.close();
+		return foundItems;
+	}
+
+	public void deleteGear(Gear toDelete) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<Gear> typedQuery = em.createQuery("SELECT g FROM Gear g WHERE g.gearName = :selectedgearName", Gear.class);
+		
+		//Substitute parameter with actual data from the toDelete item
+		typedQuery.setParameter("selectedgearName", toDelete.getGearName());
+		
+		//we only want one result
+		typedQuery.setMaxResults(1);
+		
+		//get the result and save it into a new list item
+		Gear result = typedQuery.getSingleResult();
+		
+		//remove it
+		em.remove(result);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	public void updateGear(Gear toEdit) {
+		// TODO Auto-generated method stub
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();	
+		em.merge(toEdit);
+		em.getTransaction().commit();
+		em.close();		
+	}
+	
+	public void cleanUp() {
+		emfactory.close();
 	}
 }

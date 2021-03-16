@@ -12,7 +12,7 @@
 			<table>
 				<c:forEach items="${requestScope.allDestinations}" var="currentdest">
 				<tr>
-				<td><input type="radio" name="id" value="${currentdest.tripId}"></td>
+				<td><input type="radio" name="tripId" value="${currentdest.tripId}"></td>
 				<td><h2>${currentdest.destinationName}</h2></td></tr>
 				<tr><td colspan="3">Trip Date: ${currentdest.tripDate}</td></tr>
 				<tr><td colspan="3">Explorer:
@@ -30,6 +30,6 @@
 		<input type="submit" value = "add" name = "doThisToList">
 		</form>
 		<a href="addItemsForListServlet">Create a new List</a>
-		<a href="index.html">Insert a new item</a>
+		<a href="index.jsp">Add new gear</a>
 	</body>
 </html>

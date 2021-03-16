@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,14 +27,9 @@ public class Explorers {
 	private int explorerID;
 	@Column(name="EXPLORER_NAME")
 	private String explorerName;
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-	@JoinTable(
-			name="explorers",
-			joinColumns = {
-					@JoinColumn(name="EXPLORER_ID", referencedColumnName = "EXPLORER_ID")},
-			inverseJoinColumns = {
-					@JoinColumn(name="GEAR_ID", referencedColumnName = "GEAR_ID", unique = true)
-			})
+	@OneToMany(
+			cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true
+			)
 	private List<Gear> listOfGear;
 	
 	public Explorers() {

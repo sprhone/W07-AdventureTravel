@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<form action = "addGearServlet" method="post">
-			Gear: <input type ="text" name = "gear">
+			Add new Gear: <input type ="text" name = "gear">
 			<input type = "submit" value="Add Gear">
 		</form> <br />
 		<a href = "viewAllGearServlet">View the complete gear list</a> <br/>

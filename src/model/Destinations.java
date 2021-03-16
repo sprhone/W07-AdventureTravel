@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -36,14 +35,9 @@ public class Destinations {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="EXPLORER_ID")
 	private Explorers explorers;
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-		@JoinTable(
-				name="destinations",
-				joinColumns = {
-						@JoinColumn(name="DESTINATION_ID", referencedColumnName = "DESTINATION_ID")},
-				inverseJoinColumns = {
-						@JoinColumn(name="EXPLORER_ID", referencedColumnName = "EXPLORER_ID", unique = true)
-				})	
+	@OneToMany(
+			cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true
+			)	
 	private List<Explorers> listOfExplorers;
 	
 	public Destinations() {

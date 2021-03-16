@@ -5,15 +5,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Gear List</title>
+		<title>Explorers List</title>
 	</head>
 	<body>
-		<form method = "post" action = "gearNavigationServlet">
+		<form method = "post" action = "explorerNavigationServlet">
 			<table>
-				<c:forEach items="${requestScope.allGear}" var="currentitem">
+				<c:forEach items="${requestScope.allExplorers}" var="currentitem">
 					<tr>
-						<td><input type="radio" name="gearId" value="${currentitem.gearId}"></td>
-						<td>${currentitem.gearName}</td>
+						<td><input type="radio" name="explorerId" value="${currentitem.explorerId}"></td>
+						<td>${currentitem.explorerName}</td>
 					</tr>
 				</c:forEach>
 			</table>
