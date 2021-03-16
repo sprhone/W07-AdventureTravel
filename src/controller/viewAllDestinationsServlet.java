@@ -33,14 +33,15 @@ public class viewAllDestinationsServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		DestinationsHelper dh = new DestinationsHelper();
-		List<Destinations> des = dh.getDestinations();
+		List<Destinations> des = dh.showAllDestinations();
 		request.setAttribute("allDestinations", des);
+		String path = "/destinations-list-by-explorer.jsp";
 		
-		if(des.isEmpty()) {
-			request.setAttribute("allDestinations", " ");
+		if(dh.showAllDestinations().isEmpty()) {
+			path = "/index.jsp";
 		}
 		
-		getServletContext().getRequestDispatcher("/destinations-list-by-explorer.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**

@@ -25,7 +25,6 @@ public class ExplorerHelper {
 		em.close();
 	}
 	
-
 	public List<Explorers> showAllExplorers() {
 		EntityManager em = emfactory.createEntityManager();
 		@SuppressWarnings("unchecked")
