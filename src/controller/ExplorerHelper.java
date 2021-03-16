@@ -25,9 +25,10 @@ public class ExplorerHelper {
 		em.close();
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public List<Explorers> showAllExplorers() {
 		EntityManager em = emfactory.createEntityManager();
+		@SuppressWarnings("unchecked")
 		List<Explorers> allExplorers = em.createQuery("SELECT exp FROM Explorers exp").getResultList();
 		return allExplorers;
 	}

@@ -25,9 +25,10 @@ public class GearHelper {
 		em.close();
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public List<Gear> showAllGear() {
 		EntityManager em = emfactory.createEntityManager();
+		@SuppressWarnings("unchecked")
 		List<Gear> allGear = em.createQuery("SELECT g FROM Gear g").getResultList();
 		return allGear;
 	}
@@ -46,7 +47,7 @@ public class GearHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Gear> typedQuery = em.createQuery("SELECT g FROM Gear g WHERE g.gearName = :selectedgearName", Gear.class);
-		typedQuery.setParameter("selectedGear", gearName);
+		typedQuery.setParameter("selectedgearName", gearName);
 		
 		List<Gear> foundItems = typedQuery.getResultList();
 		em.close();

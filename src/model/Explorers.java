@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,11 +26,14 @@ public class Explorers {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="EXPLORER_ID")
-	private int explorerID;
+	private int explorerId;
 	@Column(name="EXPLORER_NAME")
 	private String explorerName;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="GEAR_ID")
+	private Gear gear;
 	@OneToMany(
-			cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true
+			cascade=CascadeType.MERGE, fetch=FetchType.EAGER, orphanRemoval = true
 			)
 	private List<Gear> listOfGear;
 	
@@ -37,17 +42,25 @@ public class Explorers {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Explorers(int explorerID, String explorerName, List<Gear> listOfGear) {
+	public Explorers(int explorerId, String explorerName, Gear gear, List<Gear> listOfGear) {
 		super();
-		this.explorerID = explorerID;
+		this.explorerId = explorerId;
 		this.explorerName = explorerName;
+		this.gear = gear;
 		this.listOfGear = listOfGear;
 	}
 
-	public Explorers(String explorerName, List<Gear> listOfGear) {
+	public Explorers(String explorerName, Gear gear, List<Gear> listOfGear) {
 		super();
 		this.explorerName = explorerName;
+		this.gear = gear;
 		this.listOfGear = listOfGear;
+	}
+
+	public Explorers(String explorerName, Gear gear) {
+		super();
+		this.explorerName = explorerName;
+		this.gear = gear;
 	}
 
 	public Explorers(String explorerName) {
@@ -55,12 +68,12 @@ public class Explorers {
 		this.explorerName = explorerName;
 	}
 
-	public int getExplorerID() {
-		return explorerID;
+	public int getExplorerId() {
+		return explorerId;
 	}
 
-	public void setExplorerID(int explorerID) {
-		this.explorerID = explorerID;
+	public void setExplorerId(int explorerId) {
+		this.explorerId = explorerId;
 	}
 
 	public String getExplorerName() {
@@ -69,6 +82,14 @@ public class Explorers {
 
 	public void setExplorerName(String explorerName) {
 		this.explorerName = explorerName;
+	}
+
+	public Gear getGear() {
+		return gear;
+	}
+
+	public void setGear(Gear gear) {
+		this.gear = gear;
 	}
 
 	public List<Gear> getListOfGear() {
@@ -81,7 +102,7 @@ public class Explorers {
 
 	@Override
 	public String toString() {
-		return "Explorers [explorerID=" + explorerID + ", explorerName=" + explorerName + ", listOfGear=" + listOfGear
-				+ "]";
-	}	
+		return "Explorers [explorerId=" + explorerId + ", explorerName=" + explorerName + ", gear=" + gear
+				+ ", listOfGear=" + listOfGear + "]";
+	}
 }

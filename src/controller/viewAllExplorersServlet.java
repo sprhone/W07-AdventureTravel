@@ -31,7 +31,7 @@ public class viewAllExplorersServlet extends HttpServlet {
 		
 		ExplorerHelper eh = new ExplorerHelper();
 		request.setAttribute("allExplorers", eh.showAllExplorers());
-		String path = "/explorer-list.jsp";
+		String path = "/explorers-list.jsp";
 		if(eh.showAllExplorers().isEmpty()) {
 			path = "/index.jsp";
 		}

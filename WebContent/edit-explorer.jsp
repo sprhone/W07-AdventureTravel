@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<form action = "editExplorerServlet" method="post">
-		Gear: <input type ="text" name = "explorerName" value=
+		Explorer to edit: <input type ="text" name = "explorerName" value=
 		"${explorerToEdit.explorerName}">
 		<input type = "hidden" name = "explorerId" value="${explorerToEdit.explorerId}">
 		<input type = "submit" value="Save Edited Explorer">
